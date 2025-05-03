@@ -6,6 +6,8 @@ use crate::handlers::user::user::{
 
 pub fn user_routes() -> Router {
     Router::new()
-        .route("/users/:id", get(handling_user_by_id))
-        .route("/users", post(handling_create_user))
+        .nest("/users", Router::new()
+            .route("/:id", get(handling_user_by_id))   // Handle GET /users/:id
+            .route("/", post(handling_create_user))    // Handle POST /users
+        )
 }
