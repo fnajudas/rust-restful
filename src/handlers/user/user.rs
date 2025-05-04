@@ -22,8 +22,8 @@ pub async fn handling_user_by_id(Path(id): Path<u64>) -> impl IntoResponse {
 pub async fn handling_create_user(Json(payload): Json<UserInput>) -> impl IntoResponse {
     match create_user(payload.clone()) {
         Ok(_) => {
-            let datas = to_value(payload).unwrap_or_default();
-            build_success_response(StatusCode::CREATED, "User created successfully", datas).into_response()
+            let user_input = to_value(payload).unwrap_or_default();
+            build_success_response(StatusCode::CREATED, "User created successfully", user_input).into_response()
         }
         Err(err_msg) => {
             build_error_response(StatusCode::INTERNAL_SERVER_ERROR, "Internal Server Error", &err_msg).into_response()

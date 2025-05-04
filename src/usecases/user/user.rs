@@ -1,5 +1,3 @@
-use axum::Json;
-use validator::Validate;
 use crate::models::user::{User, UserInput};
 
 pub fn find_user_by_id(id: u64) -> Result<User, String> {
