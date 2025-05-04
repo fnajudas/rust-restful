@@ -10,7 +10,7 @@ pub struct User {
     pub password: String,
 }
 
-#[derive(Deserialize, Validate, Debug)]
+#[derive(Serialize, Deserialize, Validate, Debug, Clone)]
 pub struct UserInput {
     #[validate(length(min=3, message="Fullname must be at least 3 characters"))]
     pub fullname: String,
